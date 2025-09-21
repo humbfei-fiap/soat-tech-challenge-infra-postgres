@@ -1,4 +1,4 @@
-name: 'Deploy EKS Cluster with Terraform'
+name: 'Deploy Postgreswith Terraform'
 
 on:
   push:
