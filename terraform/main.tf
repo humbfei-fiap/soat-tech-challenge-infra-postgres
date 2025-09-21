@@ -48,7 +48,7 @@ resource "aws_db_instance" "default" {
   # Deixa o RDS gerenciar a senha mestre e a armazenar no AWS Secrets Manager.
   # Esta é a abordagem mais segura e recomendada.
   manage_master_user_password = true
-  master_username             = "postgresadmin" # Você pode customizar o nome de usuário
+  master_user_name            = "postgresadmin" # Você pode customizar o nome de usuário
 
   db_subnet_group_name   = aws_db_subnet_group.default.name
   vpc_security_group_ids = [aws_security_group.db_sg.id]
