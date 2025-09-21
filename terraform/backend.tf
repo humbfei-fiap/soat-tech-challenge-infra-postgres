@@ -5,6 +5,7 @@
 # 1. Crie um bucket S3 na sua conta AWS. Ex: "meu-projeto-tfstate-12345"
 # 2. Crie uma tabela DynamoDB com uma chave primária chamada "LockID" (do tipo String). Ex: "meu-projeto-tf-lock"
 # 3. Substitua os valores de "bucket" e "dynamodb_table" abaixo.
+#Teste
 
 terraform {
   backend "s3" {
