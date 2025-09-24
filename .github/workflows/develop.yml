@@ -58,7 +58,7 @@ jobs:
         if: github.event_name == 'pull_request'
         uses: dflook/terraform-plan@v1
         with:
-          path: terraform
+          path: ./terraform
         env:
           # Passa o token para a action poder comentar no Pull Request
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
