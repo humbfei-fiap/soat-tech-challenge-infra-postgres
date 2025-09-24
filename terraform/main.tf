@@ -11,7 +11,7 @@ resource "aws_db_subnet_group" "default" {
 # Cria um grupo de segurança para o RDS para controlar o tráfego de rede.
 resource "aws_security_group" "db_sg" {
   name        = "${var.project_name}-db-sg"
-  description = "Permite tráfego de entrada na porta 5432 para o RDS"
+  description = "Allows inbound traffic on port 5432 for RDS"
   vpc_id      = var.vpc_id
 
   # Regra de entrada: permite acesso da aplicação na porta do PostgreSQL (5432).
