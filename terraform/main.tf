@@ -2,9 +2,6 @@
 resource "aws_db_subnet_group" "default" {
   name       = "${var.project_name}-subnet-group"
   subnet_ids = var.private_subnet_ids
-  depends_on = [
-    aws_iam_service_linked_role.rds_slr
-  ]
   tags = {
     Name = "${var.project_name}-subnet-group"
   }
@@ -49,11 +46,9 @@ resource "aws_db_instance" "default" {
 
   # Deixa o RDS gerenciar a senha mestre e a armazenar no AWS Secrets Manager.
   # Esta é a abordagem mais segura e recomendada.
- # manage_master_user_password = true
- # master_user_name            = "postgresadmin" # Você pode customizar o nome de usuário
-  username             = "fastuser"
-  password             = "fiap130"
-  db_name              = "postgres"
+  manage_master_user_password = true
+  master_user_name            = "postgresadmin" # Você pode customizar o nome de usuário
+  db_name                     = "postgres"
 
   db_subnet_group_name   = aws_db_subnet_group.default.name
   vpc_security_group_ids = [aws_security_group.db_sg.id]
