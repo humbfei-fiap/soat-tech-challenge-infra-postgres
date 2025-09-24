@@ -2,7 +2,9 @@
 resource "aws_db_subnet_group" "default" {
   name       = "${var.project_name}-subnet-group"
   subnet_ids = var.private_subnet_ids
-
+  depends_on = [
+    aws_iam_service_linked_role.rds_slr
+  ]
   tags = {
     Name = "${var.project_name}-subnet-group"
   }
