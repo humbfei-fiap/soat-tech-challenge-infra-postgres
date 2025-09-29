@@ -1,10 +1,14 @@
+
+# Cria o Service-Linked Role para o RDS, se ainda não existir.
+# Este recurso é essencial para que o RDS possa interagir com outros serviços AWS em seu nome.
+resource "aws_iam_service_linked_role" "rds_slr" {
+  aws_service_name = "rds.amazonaws.com"
+}
+
 # Cria um grupo de sub-redes para o RDS, garantindo que ele seja implantado em sub-redes privadas.
 resource "aws_db_subnet_group" "default" {
   name       = "${var.project_name}-subnet-group"
   subnet_ids = var.private_subnet_ids
-  depends_on = [
-    aws_iam_service_linked_role.rds_slr
-  ]
   tags = {
     Name = "${var.project_name}-subnet-group"
   }
@@ -42,7 +46,7 @@ resource "aws_security_group" "db_sg" {
 resource "aws_db_instance" "default" {
   identifier             = "${var.project_name}-db"
   engine                 = "postgres"
-  engine_version         = "15.3" # Use uma versão estável e suportada
+  engine_version         = "15.7" # Use uma versão estável e suportada
   instance_class         = var.db_instance_class
   allocated_storage      = var.db_allocated_storage
   storage_type           = "gp2"
@@ -52,7 +56,7 @@ resource "aws_db_instance" "default" {
  # manage_master_user_password = true
  # master_user_name            = "postgresadmin" # Você pode customizar o nome de usuário
   username             = "fastuser"
-  password             = "fiap130"
+  password             = "fiap13062024"
   db_name              = "postgres"
 
   db_subnet_group_name   = aws_db_subnet_group.default.name
