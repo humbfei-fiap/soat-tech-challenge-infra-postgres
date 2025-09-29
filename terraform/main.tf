@@ -1,10 +1,4 @@
 
-# Cria o Service-Linked Role para o RDS, se ainda não existir.
-# Este recurso é essencial para que o RDS possa interagir com outros serviços AWS em seu nome.
-resource "aws_iam_service_linked_role" "rds_slr" {
-  aws_service_name = "rds.amazonaws.com"
-}
-
 # Cria um grupo de sub-redes para o RDS, garantindo que ele seja implantado em sub-redes privadas.
 resource "aws_db_subnet_group" "default" {
   name       = "${var.project_name}-subnet-group"
