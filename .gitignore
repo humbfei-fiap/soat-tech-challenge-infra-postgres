@@ -17,4 +17,6 @@ override.tf.json
 *_override.tf.json
 
 # In-house modules
-.terraform/modules/
+.terraform
+/terraform/.terraform.lock.hcl
+
