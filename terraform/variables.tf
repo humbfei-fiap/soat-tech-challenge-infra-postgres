@@ -36,3 +36,9 @@ variable "db_allocated_storage" {
   type        = number
   default     = 20
 }
+
+variable "db_name" {
+  description = "O nome do banco de dados a ser criado na instância RDS."
+  type        = string
+  default     = "fastdb"
+}
