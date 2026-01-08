@@ -9,7 +9,7 @@ vpc_id = "vpc-8ce247f1"
 private_subnet_ids = ["subnet-c3f47da5", "subnet-8a652684"]
 
 # ID do Security Group da sua aplicação. O banco de dados permitirá conexões de entrada a partir deste grupo na porta 5432.
-app_security_group_id = "sg-0a13502631545495c"
+app_security_group_id = "sg-01a18459ac48a4ed8"
 
 # Nome do banco de dados a ser criado na instância RDS.
 db_name = "fastdb"
