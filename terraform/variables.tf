@@ -37,8 +37,66 @@ variable "db_allocated_storage" {
   default     = 20
 }
 
-variable "db_name" {
-  description = "O nome do banco de dados a ser criado na instância RDS."
-  type        = string
-  default     = "fastdb"
+variable "create_databases" {
+
+  description = "Flag para habilitar a criação dos bancos de dados lógicos via provider PostgreSQL."
+
+  type        = bool
+
+  default     = false
+
 }
+
+
+
+variable "db_names" {
+
+
+
+  description = "Lista de nomes dos bancos de dados lógicos a serem criados dentro da instância única."
+
+
+
+  type        = set(string)
+
+
+
+  default     = ["fastdb", "orders-db", "customers-db", "products-db"]
+
+
+
+}
+
+
+
+
+
+
+
+variable "db_publicly_accessible" {
+  description = "Define se a instância do banco de dados terá um endereço IP público."
+  type        = bool
+  default     = false
+}
+
+variable "db_allowed_cidr_blocks" {
+
+
+
+  description = "Lista de blocos CIDR autorizados a acessar o banco de dados (ex: IP do GitHub Actions ou 0.0.0.0/0)."
+
+
+
+  type        = list(string)
+
+
+
+  default     = ["0.0.0.0/0"] # Use com cautela
+
+
+
+}
+
+
+
+
