@@ -1,11 +1,20 @@
+# Data Sources para recuperar a senha gerenciada pelo RDS no Secrets Manager
+data "aws_secretsmanager_secret" "db_pass" {
+  arn = aws_db_instance.default.master_user_secret[0].secret_arn
+}
+
+data "aws_secretsmanager_secret_version" "db_pass_val" {
+  secret_id = data.aws_secretsmanager_secret.db_pass.id
+}
+
 # Configuração do Provider PostgreSQL
-# Ele se conecta ao RDS recém-criado para gerenciar bancos de dados lógicos.
+# Usa a senha recuperada do Secrets Manager para autenticar
 provider "postgresql" {
   host            = aws_db_instance.default.address
   port            = 5432
   database        = "postgres"
   username        = aws_db_instance.default.username
-  password        = aws_db_instance.default.password # Nota: Em produção, usar Data Sources para buscar senha segura
+  password        = jsondecode(data.aws_secretsmanager_secret_version.db_pass_val.secret_string)["password"]
   superuser       = false
   sslmode         = "require"
   connect_timeout = 15
