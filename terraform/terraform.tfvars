@@ -26,3 +26,6 @@ db_names = ["fastdb", "orders-db", "customers-db", "products-db"]
 db_allowed_cidr_blocks = ["0.0.0.0/0"]
 
 
+# 1 Deploy - create database : false e db_publicly_accessible : true
+# 2 Deploy - create database : true e db_publicly_accessible : true
+# 3 Deploy - create database : true e db_publicly_accessible : false
